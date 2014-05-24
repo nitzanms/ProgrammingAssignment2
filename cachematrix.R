@@ -1,8 +1,12 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## Write a short comment describing this function
-
+## makeCacheMatrix is a function that takes a matrix and turns it into a
+## cache matrix. Cache matrix is a data type that can store both a matrix 
+## and a cached version of its inverse.
+## Arguments: x (optional) a matrix to be cached.
+## Returns: a data type containing the matrix and capable of caching its 
+##          inverse.
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -16,22 +20,11 @@ makeCacheMatrix <- function(x = matrix()) {
        setinverse = setinverse,
        getinverse = getinverse)
 }
-makeVector <- function(x = numeric()) {
-  m <- NULL
-  set <- function(y) {
-    x <<- y
-    m <<- NULL
-  }
-  get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
-  list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
-}
 
-## Write a short comment describing this function
-
+## cacheSolve accepts a cache matrix and either returns its cached inverse
+## if it exists or solves the inverse and caches it in the cache matrix.
+## Arguments: x cache matrix.
+## Returns: a matrix that is the inverse of the cache matrix.
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   inv <- x$getinverse()
